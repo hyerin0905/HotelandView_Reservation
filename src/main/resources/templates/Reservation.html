@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Reservation</title>
+    <link rel="stylesheet" th:href="@{/css/nicepage.css}">
+	<link rel="stylesheet" th:href="@{/css/Reservation.css}">
+    
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/nicepage.js"></script>
+    
+    <meta name="generator" content="Nicepage 5.2.4, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site1",
+		"sameAs": []
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Reservation">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <script>
+var buttonSelector = 'a[href*="-popup"]',
+    parseId = function (href) { return href.replace('-popup', '').replace('#', ''); };
+
+    // jQuery(function($) {
+    	$(function() {
+    $('body').on('click', buttonSelector, function (event) {
+        var id = parseId(event.currentTarget.getAttribute('href'));
+        var modalId = 'modal-' + id;
+        if ($('#' + modalId).length === 0) {
+            $('body').append('<div class="flex align-center align-vert modal modal--align" id="' + modalId + '">' +
+                '    <div class="modal__container">' +
+                '        <span class="modal__close modal__close--x" aria-hidden="true">×</span>' +
+                '        ' + document.getElementById(id).outerHTML +
+                '    </div>' +
+                '</div>');      
+        }
+        $('#' + modalId).addClass('modal--show');
+    });
+    var closeModal = function (modal) {
+        modal.removeClass('modal--show');
+        modal.addClass('modal--hide');
+        var afterAnimation = function () {
+            modal.removeClass('modal--hide');   
+        };
+        // This listens for the CSS animations to finish and then hides the modal
+        modal[0].addEventListener("webkitAnimationEnd", afterAnimation, false);
+        modal[0].addEventListener("oAnimationEnd", afterAnimation, false);
+        modal[0].addEventListener("msAnimationEnd", afterAnimation, false);
+        modal[0].addEventListener("animationend", afterAnimation, false);
+        setTimeout(afterAnimation, 400);
+    }
+    // Close the modal with any element with class 'modal__close'
+    $('body').on('click', '.modal__close', function (e) {
+        closeModal($(e.currentTarget).closest('.modal'));
+    });
+    // Click outside of the modal and close it
+    window.onclick = function (e) {
+        if ($(e.target).is('.modal')) {
+            closeModal($(e.target));
+        }
+    }
+    // Use the escape key to close modal
+    document.onkeyup = function (e) {
+        e = e || window.event;
+        if (e.keyCode == 27 && $('.modal--show').length === 1) {
+            closeModal($('.modal--show'));
+        }
+    }
+ });
+document.addEventListener("DOMContentLoaded", function(event) {
+    var buttons = document.querySelectorAll(buttonSelector);
+    for (var i = 0; i < buttons.length; i++) {
+        var section = document.getElementById(parseId(buttons[i].getAttribute('href')));
+        if (section) {
+            section.style.display = 'none';
+        }       
+    }
+});
+</script>
+</head>
+  <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-1b9b"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
+            <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-border-radius u-custom-borders u-custom-color u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-decoration u-custom-text-hover-color u-custom-text-shadow u-custom-text-shadow-blur u-custom-text-shadow-transparency u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-custom-font u-nav u-spacing-20 u-text-font u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-active-custom-color-1 u-border-hover-grey-30 u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-custom-color-2 u-text-hover-custom-color-1" href="About.html" style="padding: 10px;">About</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Standard-Template.html" target="_blank">Standard</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Deluxe-Template.html" target="_blank">Deluxe</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Suite-Template.html" target="_blank">Suite</a>
+</li></ul>
+</div>
+</li><li class="u-nav-item"><a class="u-border-active-custom-color-1 u-border-hover-grey-30 u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-custom-color-2 u-text-hover-custom-color-1" href="Contact-Template.html" target="_blank" style="padding: 10px;">Contact</a>
+</li><li class="u-nav-item"><a class="u-border-active-custom-color-1 u-border-hover-grey-30 u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-custom-color-2 u-text-hover-custom-color-1" href="Reservation-Template.html" style="padding: 10px;">Reservation</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Standard-Template.html" target="_blank">Standard</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Deluxe-Template.html" target="_blank">Deluxe</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Suite-Template.html" target="_blank">Suite</a>
+</li></ul>
+</div>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact-Template.html" target="_blank">Contact</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Reservation-Template.html">Reservation</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+        <a href="#LoginPage" class="u-border-none u-btn u-button-style u-dialog-link u-hover-feature u-none u-text-custom-color-2 u-text-hover-custom-color-1 u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1000">LOGIN<br>
+        </a>
+      </div></header>
+    <section class="u-align-center u-clearfix u-section-1" id="sec-1e99">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-hover-feature u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction="">Make a reservation</h2>
+        <div class="u-form u-form-1">
+          <form action="https://localhost:8080/insertReservation.do" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0;" source="email" name="form">
+            <div class="u-form-group u-form-partition-factor-2 u-form-phone">
+              <label for="email-f2a8" class="u-label u-label-1">Phone Number</label>
+              <input type="tel" id="email-f2a8" name="phoneNumber" class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required" placeholder="Enter your phone (e.g. +82 10-1234-5678)">
+            </div>
+            <div class="u-form-group u-form-name u-form-partition-factor-2">
+              <label for="name-f2a8" class="u-label u-label-2">Name</label>
+              <input type="text" placeholder="Enter your Name" id="name-f2a8" name="name" class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="">
+            </div>
+            <div class="u-form-group u-form-select u-form-group-3">
+              <label for="select-8e9d" class="u-form-control-hidden u-label u-label-3">Select</label>
+              <div class="u-form-select-wrapper">
+                <select id="select-8e9d" name="select" class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
+                  <option value="Standard">Standard</option>
+                  <option value="Deluxe">Deluxe</option>
+                  <option value="Suite">Suite</option>
+                </select>
+                <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+              </div>
+            </div>
+            <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-4">
+              <label for="date-4441" class="u-label u-label-4">Check-In</label>
+              <input type="text" placeholder="MM/DD/YYYY" id="date-4441" name="checkIn" class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" data-date-format="mm/dd/yyyy">
+            </div>
+            <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-5">
+              <label for="date-b39c" class="u-label u-label-5">Check-Out</label>
+              <input type="text" readonly="readonly" placeholder="MM/DD/YYYY" id="date-b39c" name="checkOut" class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" data-date-format="mm/dd/yyyy" required="required">
+            </div>
+            <div class="u-align-center u-form-group u-form-submit">
+              <a href="#" class="u-black u-btn u-btn-rectangle u-btn-submit u-button-style u-btn-1">Submit</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="">
+          </form>
+        </div>
+      </div>
+      
+    </section>
+    
+    
+    
+    
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-custom-color-2 u-footer u-footer" id="sec-74c1"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-align-left-lg u-align-left-md u-align-left-xl u-text u-text-custom-color-1 u-text-1">© 2023&nbsp;. All Rights Reserved.<br>Designed &amp; Developed by&nbsp;&nbsp;Demo Images: Unsplash.com &amp; Pexels.com
+        </p>
+        <div class="u-align-right u-social-icons u-spacing-10 u-social-icons-1">
+          <a class="u-social-url" title="facebook" target="_blank" href=""><span class="u-file-icon u-icon u-social-facebook u-social-icon u-text-custom-color-1 u-icon-1"><img src="img/3128304-6ce5b9e5.png" alt=""></span>
+          </a>
+          <a class="u-social-url" title="twitter" target="_blank" href=""><span class="u-file-icon u-icon u-social-icon u-social-twitter u-text-custom-color-1 u-icon-2"><img src="img/733579-7d062c2b.png" alt=""></span>
+          </a>
+          <a class="u-social-url" title="instagram" target="_blank" href=""><span class="u-file-icon u-icon u-social-icon u-social-instagram u-text-custom-color-1 u-icon-3"><img src="img/174855-79cbe63c.png" alt=""></span>
+          </a>
+        </div>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="" target="_blank">
+        <span>Website Builder Software</span>
+      </a>. 
+    </section>
+  <section class="u-align-center u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-4" id="LoginPage" data-dialog-show-on="click" data-dialog-show-on-list="90638883">
+      <div class="u-align-center u-container-style u-dialog u-radius-15 u-shape-round u-white u-dialog-1">
+        <div class="u-container-layout u-container-layout-1">
+          <h3 class="u-align-center u-text u-text-1">LOGIN</h3>
+          <div class="u-form u-form-1">
+            <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 0px;" source="email" name="form">
+              <div class="u-form-email u-form-group">
+                <label for="name-31f5" class="u-label">ID</label>
+                <input type="email" placeholder="Set Your ID" id="name-31f5" name="emailLogin" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
+              </div>
+              <div class="u-form-group">
+                <label for="email-31f5" class="u-label">Password</label>
+                <input type="text" placeholder="Set Your Password" id="email-31f5" name="pwLogin" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
+              </div>
+              <div class="u-align-center u-form-group u-form-submit">
+                <a href="#" class="u-black u-border-2 u-border-grey-75 u-btn u-btn-submit u-button-style u-btn-1">SIGN IN<br>
+                </a>
+                <input type="submit" value="submit" class="u-form-control-hidden">
+              </div>
+              <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+              <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+              <input type="hidden" value="" name="recaptchaResponse">
+            </form>
+          </div>
+          <p class="u-align-center u-small-text u-text u-text-default u-text-variant u-text-2">
+            <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-dialog-link u-hover-none u-none u-text-palette-1-base u-btn-2" href="#sec-8a82">register</a>
+          </p>
+        </div><button class="u-dialog-close-button u-icon u-text-grey-50 u-icon-1">
+        <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 409.806 409.806" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4e2d"></use></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 409.806 409.806" x="0px" y="0px" id="svg-4e2d" style="enable-background:new 0 0 409.806 409.806;"><g><g><path d="M228.929,205.01L404.596,29.343c6.78-6.548,6.968-17.352,0.42-24.132c-6.548-6.78-17.352-6.968-24.132-0.42    c-0.142,0.137-0.282,0.277-0.42,0.42L204.796,180.878L29.129,5.21c-6.78-6.548-17.584-6.36-24.132,0.42    c-6.388,6.614-6.388,17.099,0,23.713L180.664,205.01L4.997,380.677c-6.663,6.664-6.663,17.468,0,24.132    c6.664,6.662,17.468,6.662,24.132,0l175.667-175.667l175.667,175.667c6.78,6.548,17.584,6.36,24.132-0.42    c6.387-6.614,6.387-17.099,0-23.712L228.929,205.01z"></path>
+</g>
+</g></svg>
+      </button>
+      </div>
+    </section><style>.u-dialog-section-4 .u-dialog-1 {
+  width: 400px;
+  min-height: 500px;
+  background-image: none;
+  height: auto;
+  margin: 60px auto;
+}
+
+.u-dialog-section-4 .u-container-layout-1 {
+  padding: 0 20px 4px;
+}
+
+.u-dialog-section-4 .u-text-1 {
+  margin: 62px 20px 0;
+}
+
+.u-dialog-section-4 .u-form-1 {
+  height: 264px;
+  width: 320px;
+  margin: 62px 20px 0;
+}
+
+.u-dialog-section-4 .u-btn-1 {
+  border-style: none;
+  text-transform: uppercase;
+}
+
+.u-dialog-section-4 .u-text-2 {
+  margin: 0 auto 0 20px;
+}
+
+.u-dialog-section-4 .u-btn-2 {
+  background-image: none;
+  padding: 0;
+}
+
+.u-dialog-section-4 .u-icon-1 {
+  width: 16px;
+  height: 16px;
+  left: auto;
+  top: 14px;
+  position: absolute;
+  right: 14px;
+}
+
+@media (max-width: 991px) {
+  .u-dialog-section-4 .u-container-layout-1 {
+    padding-top: 29px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-dialog-section-4 .u-container-layout-1 {
+    padding-top: 45px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-dialog-section-4 .u-dialog-1 {
+    width: 340px;
+  }
+
+  .u-dialog-section-4 .u-container-layout-1 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .u-dialog-section-4 .u-text-1 {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .u-dialog-section-4 .u-form-1 {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .u-dialog-section-4 .u-text-2 {
+    margin-left: 0;
+  }
+}</style><section class="u-align-center u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-5" id="sec-8a82">
+      <div class="u-align-center u-container-align-center u-container-style u-dialog u-radius-15 u-shape-round u-white u-dialog-1">
+        <div class="u-container-layout u-valign-top-xs u-container-layout-1">
+          <h3 class="u-align-center u-text u-text-1">SIGN UP</h3>
+          <div class="u-form u-form-1">
+            <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
+              <div class="u-form-email u-form-group">
+                <label for="email-b9fa" class="u-label">Email</label>
+                <input type="email" placeholder="Enter a valid email address" id="email-b9fa" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-5 u-white" required="">
+              </div>
+              <div class="u-form-group u-form-name">
+                <label for="name-b9fa" class="u-label">Name</label>
+                <input type="text" placeholder="Enter your Name" id="name-b9fa" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-5 u-white" required="">
+              </div>
+              <div class="u-align-center u-form-group u-form-submit">
+                <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-5-dark-3 u-btn-1">SIGN UP<br>
+                </a>
+                <input type="submit" value="submit" class="u-form-control-hidden">
+              </div>
+              <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+              <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+              <input type="hidden" value="" name="recaptchaResponse">
+            </form>
+          </div>
+        </div><button class="u-dialog-close-button u-icon u-text-grey-50 u-icon-1">
+        <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 409.806 409.806" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4e2d"></use></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 409.806 409.806" x="0px" y="0px" id="svg-4e2d" style="enable-background:new 0 0 409.806 409.806;"><g><g><path d="M228.929,205.01L404.596,29.343c6.78-6.548,6.968-17.352,0.42-24.132c-6.548-6.78-17.352-6.968-24.132-0.42    c-0.142,0.137-0.282,0.277-0.42,0.42L204.796,180.878L29.129,5.21c-6.78-6.548-17.584-6.36-24.132,0.42    c-6.388,6.614-6.388,17.099,0,23.713L180.664,205.01L4.997,380.677c-6.663,6.664-6.663,17.468,0,24.132    c6.664,6.662,17.468,6.662,24.132,0l175.667-175.667l175.667,175.667c6.78,6.548,17.584,6.36,24.132-0.42    c6.387-6.614,6.387-17.099,0-23.712L228.929,205.01z"></path>
+</g>
+</g></svg>
+      </button>
+      </div>
+    </section><style>.u-dialog-section-5 .u-dialog-1 {
+  width: 400px;
+  min-height: 500px;
+  background-image: none;
+  height: auto;
+  margin: 60px auto;
+}
+
+.u-dialog-section-5 .u-container-layout-1 {
+  padding: 0;
+}
+
+.u-dialog-section-5 .u-text-1 {
+  width: 116px;
+  margin: 102px auto 0;
+}
+
+.u-dialog-section-5 .u-form-1 {
+  height: 284px;
+  width: 340px;
+  margin: 30px auto 0;
+}
+
+.u-dialog-section-5 .u-btn-1 {
+  background-image: none;
+}
+
+.u-dialog-section-5 .u-icon-1 {
+  width: 16px;
+  height: 16px;
+  left: auto;
+  top: 14px;
+  position: absolute;
+  right: 14px;
+}
+
+@media (max-width: 991px) {
+  .u-dialog-section-5 .u-container-layout-1 {
+    padding-top: 29px;
+  }
+
+  .u-dialog-section-5 .u-text-1 {
+    width: auto;
+    margin-right: 360px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-dialog-section-5 .u-container-layout-1 {
+    padding-top: 45px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .u-dialog-section-5 .u-text-1 {
+    margin-right: 190px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-dialog-section-5 .u-dialog-1 {
+    width: 340px;
+  }
+
+  .u-dialog-section-5 .u-container-layout-1 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .u-dialog-section-5 .u-text-1 {
+    margin-top: 302px;
+    margin-right: auto;
+  }
+}</style>
+</body></html>

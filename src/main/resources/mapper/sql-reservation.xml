@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservation.mapper.ReservationMapper">
+
+	<select id="selectReservationList" resultType="reservation.dto.ReservationDto">
+		select reservation_idx, reservation_name, reservation_contact, reservation_room, reservation_dt,
+			date_format (regist_dt, '%Y-%m-%d %H:%i:%s') as regist_dt
+		from t_reservation
+			<!-- order by reservation_idx desc;-->
+	</select>
+	
+	<insert id="insertReservation" parameterType="reservation.dto.ReservationDto">
+		insert into t_reservation (reservation_name, reservation_contact, regist_dt, reservation_room, reservation_dt)
+		values ( #{reservationName}, #{reservationContact}, now(), #{reservationRoom}, #{reservationDt})
+	</insert>
+	
+	<select id="selectReservationDetail" parameterType="int" resultType="reservation.dto.ReservationDto">
+		select reservation_idx, reservation_name, reservation_contact, reservation_room, reservation_dt,
+			date_format (regist_dt, '%Y-%m-%d %H:%i:%s') as regist_dt
+		from t_reservation
+	</select>
+	
+</mapper>
