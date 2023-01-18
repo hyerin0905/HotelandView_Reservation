@@ -2,22 +2,86 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation.mapper.ReservationMapper">
 
-	<select id="selectReservationList" resultType="reservation.dto.ReservationDto">
-		select reservation_idx, reservation_name, reservation_contact, reservation_room, reservation_dt,
-			date_format (regist_dt, '%Y-%m-%d %H:%i:%s') as regist_dt
+	<!-- <호텔 예약 시스템 쿼리> -->
+	<!-- 예약 정보를 파라미터 값으로 받아서, 반환타입으로 출력 -->
+	<select id="reservation"
+		parameterType="reservation.dto.ReservationDto"
+		resultType="reservation.dto.ReservationDto">
+		select user_name, reservation_contact, room_type, check_in,
+		check_out, pool_reservation
 		from t_reservation
-			<!-- order by reservation_idx desc;-->
+		where user_name = #{userName} and reservation_contact =
+		#{reservationContact}
 	</select>
-	
-	<insert id="insertReservation" parameterType="reservation.dto.ReservationDto">
-		insert into t_reservation (reservation_name, reservation_contact, regist_dt, reservation_room, reservation_dt)
-		values ( #{reservationName}, #{reservationContact}, now(), #{reservationRoom}, #{reservationDt})
+
+	<!-- 예약 리스트를 출력 -->
+	<select id="selectReservationList"
+		resultType="reservation.dto.ReservationDto">
+		select reservation_idx, user_name, reservation_contact,
+		room_type, check_in, check_out, pool_reservation
+		from t_reservation
+	</select>
+
+	<!-- 예약 정보를 insert해주는 쿼리 (입력값 받아서) -->
+	<insert id="insertReservation"
+		parameterType="reservation.dto.ReservationDto">
+		insert into t_reservation (user_name,
+		reservation_contact, check_in, room_type, pool_reservation, check_out)
+		values ( #{userName}, #{reservationContact}, #{checkIn},
+		#{roomType},#{poolReservation}, #{checkOut})
 	</insert>
-	
-	<select id="selectReservationDetail" parameterType="int" resultType="reservation.dto.ReservationDto">
-		select reservation_idx, reservation_name, reservation_contact, reservation_room, reservation_dt,
-			date_format (regist_dt, '%Y-%m-%d %H:%i:%s') as regist_dt
+
+	<!-- 중복예약방지하는 쿼리 -->
+	<select id="checkDuplicate"
+		parameterType="reservation.dto.ReservationDto"
+		resultType="reservation.dto.ReservationDto">
+		select user_name, reservation_contact, check_in, room_type,
+		pool_reservation, check_out
 		from t_reservation
+		where
+		room_type=#{roomType}
+		and
+		user_name=#{userName}
+		and
+		(
+			check_in between #{checkIn} and #{checkOut}
+			or
+			check_out between #{checkIn} and #{checkOut}
+		)
+		union
+		select user_name, reservation_contact, check_in, room_type,
+		pool_reservation, check_out
+		from t_reservation
+		where
+		room_type=#{roomType}
+		and
+		user_name=#{userName}
+		and
+		<![CDATA[check_in > #{checkIn}]]>
+		and
+		<![CDATA[check_out < #{checkOut}]]>
 	</select>
-	
+
+	<!-- <예약 조회 시스템 쿼리> -->
+	<!-- 예약 조회 정보를 보여주는 쿼리 -->
+	<select id="checkReservationInfo"
+		parameterType="reservation.dto.ReservationDto"
+		resultType="reservation.dto.ReservationDto">
+		select reservation_idx, user_name, reservation_contact,
+		room_type, check_in, check_out, pool_reservation
+		from t_reservation
+		where user_name = #{userName} and reservation_contact =
+		#{reservationContact}
+	</select>
+
+	<!-- checkIdx를 파라미터 값으로 받아서 Dto에 넣어주는 쿼리 -->
+	<select id="CheckReservation" parameterType="int"
+		resultType="reservation.dto.ReservationDto">
+		SELECT user_name, reservation_contact, room_type, check_in,
+		check_out, pool_reservation
+		FROM t_reservation
+		where user_name = #{userName} and reservation_contact =
+		#{reservationContact}
+	</select>
+
 </mapper>

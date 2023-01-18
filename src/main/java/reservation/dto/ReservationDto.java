@@ -5,13 +5,12 @@ import lombok.Data;
 @Data
 public class ReservationDto {
 		private int reservationIdx;
-		private String reservationName;
+		private String userName;
 		private String reservationContact;
-		private String reservationDt;
-		private String reservationRoom;
-		private String registDt;
-	
-		
+		private String roomType;
+		private String poolReservation;
+		private String checkIn;
+		private String checkOut;
 }
 
 

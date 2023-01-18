@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>예약 조회 페이지</title>
+	<link rel="stylesheet" th:href="@{/css/reservationList.css}" />
+</head>
+<body>
+	<div class="container">
+		<h2>예약 조회</h2>
+		<form action="checkReservationInfo.do" method="POST" id="frm" name="frm">
+			<table class="reservation_info">
+				<tr>
+					<td>예약자 성함</td>
+					<td><input type="text" id="userName" name="userName"/></td>
+				</tr>
+				<tr>
+					<td>예약시 입력한 연락처</td>
+					<td><input type="text" id="reservationContact" name="reservationContact"/></td>
+				</tr>
+			</table>
+			<input type="submit" id="submit" value="조회" class="btn" />
+		</form>
+	</div>
+</body>
+</html>
